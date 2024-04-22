@@ -4,7 +4,7 @@ from tkinter import messagebox
 def Validate_password(password):
     #complete the module
     try:
-        file=open("password.bin","rb")
+        file=open("binary.bin","rb")
         original_password=pickle.load(file)
         if(original_password==password):
             file.close()
@@ -24,9 +24,9 @@ def reset_password(password):
         #complete the modue
         Upper_case=Num=Spec_char=False
         for i in password:
-            if(i.isUpper()):
+            if(i.isupper()):
                 Upper_case=True
-            elif(not(i.isalnum()):
+            elif(not(i.isalnum())):
                 Spec_char=True
             elif(i.isdigit()):
                 Num=True
@@ -34,12 +34,8 @@ def reset_password(password):
             return True
         else:
             messagebox.showwarning("Sales Analytic","Not Valid")
+            #changes required
             
-
-
-
-
-    
     if(validate_password_reset(password)):
         file=open("binary.bin","wb")
         pickle.dump(password,file)
@@ -48,5 +44,5 @@ def reset_password(password):
         return True
     else:
         return False
-        
+
 
