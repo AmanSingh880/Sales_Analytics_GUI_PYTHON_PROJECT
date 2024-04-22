@@ -1,8 +1,7 @@
 import pickle
 from tkinter import messagebox
-#here we will add all modules
+
 def Validate_password(password):
-    #complete the module
     try:
         file=open("binary.bin","rb")
         original_password=pickle.load(file)
@@ -19,10 +18,11 @@ def Validate_password(password):
         return False
         
 def reset_password(password):
-    #complete the module
     def validate_password_reset(password):
-        #complete the modue
         Upper_case=Num=Spec_char=False
+        if(len(password)<8):
+            messagebox.showwarning("Sales Analytic","Password must have 8 characters")
+            return False
         for i in password:
             if(i.isupper()):
                 Upper_case=True
@@ -33,9 +33,24 @@ def reset_password(password):
         if(Upper_case and Num and Spec_char):
             return True
         else:
-            messagebox.showwarning("Sales Analytic","Not Valid")
-            #changes required
-            
+            if(Upper_case):
+                if(Num):
+                    messagebox.showwarning("Sales Analytic","Password must have special character")
+                else:
+                    messagebox.showwarning("Sales Analytic","Password must have digits(0-9)")
+            elif(Num):
+                if(Upper_case):
+                    messagebox.showwarning("Sales Analytic","Password must have special character(@-#)")
+                else:
+                    messagebox.showwarning("Sales Analytic","Password must have Uppercase character(A-Z)")
+            else:
+                if(Num):
+                    messagebox.showwarning("Sales Analytic","Password must have Uppercase character(A-Z)")
+                else:
+                    messagebox.showwarning("Sales Analytic","Password must have digits(0-9)")
+            return False
+
+    
     if(validate_password_reset(password)):
         file=open("binary.bin","wb")
         pickle.dump(password,file)
@@ -44,5 +59,3 @@ def reset_password(password):
         return True
     else:
         return False
-
-
