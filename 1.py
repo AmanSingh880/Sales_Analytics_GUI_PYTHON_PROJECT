@@ -64,15 +64,15 @@ def reset_password(password):
 ###########################################################################################################################################
 ###########################################################################################################################################
 #Product Name	Product_Model	category	MRP	product_sold
-class data_entery_class():
+class data_entry_class():
     def __init__(self):
-        self.Product_ID=""
-        self.Date=""
-        self.Product_Name=""
-        self.Product_Model=""
-        self.Category=""
-        self.MRP=""
-        self.Product_sold=""
-a=data_entery_class()
+        self.Product_ID=None
+        self.Date=None
+        self.Product_Name=None
+        self.Product_Model=None
+        self.Category=None
+        self.MRP=None
+        self.Product_sold=None
+a=data_entry_class()
 a.Category="Neckband"
 print(a.Category)
