@@ -60,3 +60,19 @@ def reset_password(password):
         return True
     else:
         return False
+###########################################################################################################################################
+###########################################################################################################################################
+###########################################################################################################################################
+#Product Name	Product_Model	category	MRP	product_sold
+class data_entery_class():
+    def __init__(self):
+        self.Product_ID=""
+        self.Date=""
+        self.Product_Name=""
+        self.Product_Model=""
+        self.Category=""
+        self.MRP=""
+        self.Product_sold=""
+a=data_entery_class()
+a.Category="Neckband"
+print(a.Category)
