@@ -74,5 +74,6 @@ class data_entry_class():
         self.MRP=None
         self.Product_sold=None
 a=data_entry_class()
-a.Category="Neckband"
-print(a.Category)
+def passed(a):
+    return False
+    pass
