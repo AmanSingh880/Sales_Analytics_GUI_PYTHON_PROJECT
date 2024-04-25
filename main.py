@@ -1,6 +1,8 @@
 from tkinter import *
 import os
 from tkinter import messagebox
+import mysql.connector
+from datetime import datetime as z
 class data_entry_class():
     def __init__(self):
         self.Product_ID=None
