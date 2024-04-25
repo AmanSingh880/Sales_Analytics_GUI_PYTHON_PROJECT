@@ -1,8 +1,6 @@
 from tkinter import *
 import os
 from tkinter import messagebox
-import mysql.connector
-from datetime import datetime as z
 class data_entry_class():
     def __init__(self):
         self.Product_ID=None
@@ -40,6 +38,7 @@ def passed(a):
     mydb.commit()
     return mycursor.rowcount != 0
 
+
 def entry():
     l.destroy()
     l1.destroy()
@@ -56,7 +55,11 @@ def entry():
             messagebox.showwarning("Sales Analytic","Data Saved")
         else:
             messagebox.showwarning("Sales Analytic","Failed \n Try again")
-        pass
+
+    def exitf():
+        root.destroy()
+        os.system("main.py")
+
     l2=Label(root,text="Sales Analytics Entry Data",font="Airtel 34",bg="blue", fg="white")
     l2.place(x=300,y=50)
     # Product Name	Product_Model	category	MRP	product_sold
@@ -92,12 +95,9 @@ def entry():
     e6.place(x=250,y=400)
     b1=Button(text="Submit",bg="dark blue",fg="white",font="Airtel 19",command=get_values)
     b1.place(x=180,y=450)
+    b2=Button(text="Back",bg="blue",fg="white",font="Airtel 15",command=exitf)
+    b2.place(x=50,y=650)
     root.mainloop()
-    pass
-
-
-
-
 
 root=Tk()
 root.title("Sales analytic")
@@ -107,5 +107,7 @@ l=Label(root,text="Welcome to Sales Analytics",font="Airtel 34",bg="blue", fg="w
 l.place(x=300,y=100)
 l1=Button(text="Enter Data",bg="dark blue",fg="white",font="Airtel 20",command=entry)
 l1.place(x=100,y=200)
+b2=Button(text="Exit",bg="blue",fg="white",font="Airtel 15",command=root.destroy)
+b2.place(x=50,y=650)
 
 root.mainloop()
