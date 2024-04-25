@@ -16,13 +16,13 @@ for x in mycursor:
   l.append(x[1])
   d.append(x[0])
 import datetime
-l+=[34,36,26]
+
 
 # Assuming your list is defined as follows
 date_list = d
 
 # Extract date and month separately
-dates = [12,13,14,15,16,17]
+dates = [date.day for date in date_list]
 months = [date.month for date in date_list]
 
 import numpy as np
