@@ -9,7 +9,7 @@ mydb = mysql.connector.connect(
 
 mycursor = mydb.cursor()
 
-mycursor.execute("Select date_of_sale,product_sold from boat")
+mycursor.execute("Select date_of_sale from boat")
 l=[]
 d=[]
 for x in mycursor:
