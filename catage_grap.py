@@ -25,14 +25,6 @@ class data_entry_class():
         self.MRP = None
         self.Product_sold = None
 
-def show_dates():
-    mycursor.execute("Select date_of_sale from boat")
-    d=[]
-    for x in mycursor:
-        d.append(x[0])
-    dates = [date.day for date in d]
-    return list(set(dates))
-
 def show_categories():
     mycursor.execute("Select Distinct category from boat")
     cat=[]

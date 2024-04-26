@@ -32,13 +32,6 @@ def show_dates():
         d.append(x[0])
     dates = [date.day for date in d]
     return list(set(dates))
-
-def show_categories():
-    mycursor.execute("Select Distinct category from boat")
-    cat=[]
-    for x in mycursor:
-        cat.append(x[0])
-    return cat
 root=Tk()
 root.title("Sales analytic")
 root.geometry('1200x750')
