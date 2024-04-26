@@ -57,15 +57,22 @@ def graph_show():
     def back_graph():
         root.destroy()
         os.system("main.py")
-    bu=Button(text="Categry Wise",bg="dark blue",fg="white",font="Airtel 14")
+    def catage_gra():
+        root.destroy()
+        os.system("catage_grap.py")
+    def date_gra():
+        root.destroy()
+        os.system("date_grap.py")
+    bu=Button(text="Categry Wise",bg="dark blue",fg="white",font="Airtel 14",command=catage_gra)
     bu.pack()
-    bu=Button(text="Today Data",bg="dark blue",fg="white",font="Airtel 14")
+    bu=Button(text="Today Data",bg="dark blue",fg="white",font="Airtel 14",command=date_gra)
     bu.pack()
     bu=Button(text="back",bg="dark blue",fg="white",font="Airtel 14",command=back_graph)
     bu.pack()
     toolbar = NavigationToolbar2Tk(canvas, root) 
     toolbar.update() 
     canvas.get_tk_widget().pack()
+    root.mainloop()
 
 
 def passed(a):
