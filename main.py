@@ -30,8 +30,7 @@ def graph_show():
     l.destroy()
     l1.destroy()
     b2.destroy()
-    print("1")
-    h1=Label(root,text="Sales Analytics",font="Airtel 34",bg="blue", fg="white").pack()
+    h1=Label(root,text="Sales Analytics",font="Airtel 30",bg="blue", fg="white").pack()
     mycursor.execute("Select date_of_sale,product_sold from boat")
     y=[]
     d=[]
@@ -41,20 +40,28 @@ def graph_show():
     import datetime
     date_list = d
     x = [date.day for date in date_list]
-    fig = Figure(figsize=(5, 5), dpi=110)  
-    plot1 = fig.add_subplot() 
-    plot1.plot(x,y) 
-    canvas = FigureCanvasTkAgg(fig, master=root) 
-    canvas.draw()  
+    fig = Figure(figsize=(6, 5), dpi=110)
+    plot1 = fig.add_subplot(111)
+    plot1.plot(x, y, marker='*', color='blue', linestyle='-.')
+
+    # Customize the appearance: add grid lines
+    plot1.grid(True)
+
+    # Create the Tkinter canvas containing the Matplotlib figure
+    canvas = FigureCanvasTkAgg(fig, master=root)
+    canvas.draw()
+
+    # Pack the canvas onto the Tkinter window
     canvas.get_tk_widget().pack()
+
     def back_graph():
         root.destroy()
         os.system("main.py")
-    bu=Button(text="Categry Wise",bg="dark blue",fg="white",font="Airtel 19")
+    bu=Button(text="Categry Wise",bg="dark blue",fg="white",font="Airtel 14")
     bu.pack()
-    bu=Button(text="Today Data",bg="dark blue",fg="white",font="Airtel 19")
+    bu=Button(text="Today Data",bg="dark blue",fg="white",font="Airtel 14")
     bu.pack()
-    bu=Button(text="back",bg="dark blue",fg="white",font="Airtel 19",command=back_graph)
+    bu=Button(text="back",bg="dark blue",fg="white",font="Airtel 14",command=back_graph)
     bu.pack()
     toolbar = NavigationToolbar2Tk(canvas, root) 
     toolbar.update() 
