@@ -6,8 +6,6 @@ from datetime import datetime as z
 from matplotlib.figure import Figure 
 from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, 
 NavigationToolbar2Tk) 
-
-
 mydb = mysql.connector.connect(
     host="localhost",
     user="root",
@@ -31,6 +29,9 @@ def show_categories():
     for x in mycursor:
         cat.append(x[0])
     return cat
+def back_sh():
+    root.destroy()
+    os.system("main.py")
 root=Tk()
 root.title("Sales analytic")
 root.geometry('1200x750')
@@ -38,4 +39,6 @@ root.config(bg="red")
 l=Label(root,text="Sales Analytics",font="Airtel 34",bg="blue", fg="white")
 l.place(x=300,y=100)
 
+b2=Button(text="back",bg="blue",fg="white",font="Airtel 15",command=back_sh)
+b2.place(x=50,y=650)
 root.mainloop()

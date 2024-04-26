@@ -43,17 +43,10 @@ def graph_show():
     fig = Figure(figsize=(6, 5), dpi=110)
     plot1 = fig.add_subplot(111)
     plot1.plot(x, y, marker='*', color='blue', linestyle='-.')
-
-    # Customize the appearance: add grid lines
     plot1.grid(True)
-
-    # Create the Tkinter canvas containing the Matplotlib figure
     canvas = FigureCanvasTkAgg(fig, master=root)
     canvas.draw()
-
-    # Pack the canvas onto the Tkinter window
     canvas.get_tk_widget().pack()
-
     def back_graph():
         root.destroy()
         os.system("main.py")
