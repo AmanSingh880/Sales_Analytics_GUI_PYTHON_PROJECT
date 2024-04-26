@@ -3,15 +3,9 @@ import os
 from tkinter import messagebox
 import mysql.connector
 from datetime import datetime as z
-class data_entry_class():
-    def __init__(self):
-        self.Product_ID=None
-        self.Date=None
-        self.Product_Name=None
-        self.Product_Model=None
-        self.Category=None
-        self.MRP=None
-        self.Product_sold=None
+from matplotlib.figure import Figure 
+from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, 
+NavigationToolbar2Tk) 
 
 
 mydb = mysql.connector.connect(
@@ -21,6 +15,51 @@ mydb = mysql.connector.connect(
     database="sales_report"
 )
 mycursor = mydb.cursor()
+class data_entry_class():
+    def __init__(self):
+        self.Product_ID = None
+        self.Date = None
+        self.Product_Name = None
+        self.Product_Model = None
+        self.Category = None
+        self.MRP = None
+        self.Product_sold = None
+
+def graph_show():
+    l11.destroy()
+    l.destroy()
+    l1.destroy()
+    b2.destroy()
+    print("1")
+    h1=Label(root,text="Sales Analytics",font="Airtel 34",bg="blue", fg="white").pack()
+    mycursor.execute("Select date_of_sale,product_sold from boat")
+    y=[]
+    d=[]
+    for i in mycursor:
+        y.append(i[1])
+        d.append(i[0])
+    import datetime
+    date_list = d
+    x = [date.day for date in date_list]
+    fig = Figure(figsize=(5, 5), dpi=110)  
+    plot1 = fig.add_subplot() 
+    plot1.plot(x,y) 
+    canvas = FigureCanvasTkAgg(fig, master=root) 
+    canvas.draw()  
+    canvas.get_tk_widget().pack()
+    def back_graph():
+        root.destroy()
+        os.system("main.py")
+    bu=Button(text="Categry Wise",bg="dark blue",fg="white",font="Airtel 19")
+    bu.pack()
+    bu=Button(text="Today Data",bg="dark blue",fg="white",font="Airtel 19")
+    bu.pack()
+    bu=Button(text="back",bg="dark blue",fg="white",font="Airtel 19",command=back_graph)
+    bu.pack()
+    toolbar = NavigationToolbar2Tk(canvas, root) 
+    toolbar.update() 
+    canvas.get_tk_widget().pack()
+
 
 def passed(a):
     b = a.Product_ID
@@ -40,8 +79,8 @@ def passed(a):
     mydb.commit()
     return mycursor.rowcount != 0
 
-
 def entry():
+    l11.destroy()
     l.destroy()
     l1.destroy()
     def get_values():
@@ -108,7 +147,9 @@ root.config(bg="red")
 l=Label(root,text="Welcome to Sales Analytics",font="Airtel 34",bg="blue", fg="white")
 l.place(x=300,y=100)
 l1=Button(text="Enter Data",bg="dark blue",fg="white",font="Airtel 20",command=entry)
-l1.place(x=100,y=200)
+l1.place(x=100,y=250)
+l11=Button(text="Analysis",bg="dark blue",fg="white",font="Airtel 20",command=graph_show)
+l11.place(x=650,y=250)
 b2=Button(text="Exit",bg="blue",fg="white",font="Airtel 15",command=root.destroy)
 b2.place(x=50,y=650)
 

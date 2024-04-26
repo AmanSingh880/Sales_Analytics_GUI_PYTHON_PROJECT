@@ -50,4 +50,4 @@ a.Category = "Earbud"
 a.MRP = 1500
 a.Product_sold = 28
 
-passed(a)
+# passed(a)
