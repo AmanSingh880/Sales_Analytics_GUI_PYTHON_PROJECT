@@ -9,7 +9,7 @@ mydb = mysql.connector.connect(
 
 mycursor = mydb.cursor()
 
-mycursor.execute("Select date_of_sale from boat")
+mycursor.execute("Select date_of_sale,product_sold from boat")
 l=[]
 d=[]
 for x in mycursor:
@@ -24,6 +24,11 @@ date_list = d
 # Extract date and month separately
 dates = [date.day for date in date_list]
 months = [date.month for date in date_list]
+di={}
+dl=[]
+for i in range(len(d)):
+  di[dates[i]]+=list(l[i])
+
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -33,3 +38,4 @@ plt.plot(x,y)
 plt.ylabel("No of products")
 plt.xlabel("date")
 plt.show()
+
