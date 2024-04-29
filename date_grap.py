@@ -32,11 +32,20 @@ def show_dates():
         d.append(x[0])
     dates = [date.day for date in d]
     return list(set(dates))
+def on_menu_select(value):
+    pass
+
+
+
 root=Tk()
 root.title("Sales analytic")
 root.geometry('1200x750')
 root.config(bg="red")
 l=Label(root,text="Sales Analytics",font="Airtel 34",bg="blue", fg="white")
 l.place(x=300,y=100)
-
+selected_option = StringVar()
+selected_option.set("Categories")
+options =show_dates();
+dropdown = OptionMenu(root, selected_option, *options,command=on_menu_select)
+dropdown.place(x=100,y=200)
 root.mainloop()

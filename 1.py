@@ -133,6 +133,29 @@ def show_categories():
         cat.append(x[0])
     return cat
     
+    ####################################\
+
+
+import tkinter as tk
+from tkinter import messagebox
+
+def on_menu_select(value):
+    messagebox.showinfo("Selected Option", f"You selected: {value}")
+
+root = tk.Tk()
+root.title("Dropdown Menu Example")
+
+selected_option = tk.StringVar()
+selected_option.set("Option 1")  # Set default selected option
+
+options = ["Option 1", "Option 2", "Option 3", "Option 4"]
+
+# Create dropdown menu
+dropdown = tk.OptionMenu(root, selected_option, *options, command=on_menu_select)
+dropdown.pack(padx=20, pady=20)
+
+root.mainloop()
+
     
     
   

@@ -26,6 +26,7 @@ class data_entry_class():
         self.Product_sold = None
 
 def graph_show():
+    l12.destroy()
     l11.destroy()
     l.destroy()
     l1.destroy()
@@ -101,6 +102,7 @@ def passed(a):
     return mycursor.rowcount != 0
 
 def entry():
+    l12.destroy()
     l11.destroy()
     l.destroy()
     l1.destroy()
@@ -160,7 +162,9 @@ def entry():
     b2=Button(text="Back",bg="blue",fg="white",font="Airtel 15",command=exitf)
     b2.place(x=50,y=650)
     root.mainloop()
-
+def reset_pass():
+    root.destroy()
+    os.system("reset.py")
 root=Tk()
 root.title("Sales analytic")
 root.geometry('1200x750')
@@ -169,6 +173,8 @@ l=Label(root,text="Welcome to Sales Analytics",font="Airtel 34",bg="blue", fg="w
 l.place(x=300,y=100)
 l1=Button(text="Enter Data",bg="dark blue",fg="white",font="Airtel 20",command=entry)
 l1.place(x=100,y=250)
+l12=Button(text="Reset_Password",bg="dark blue",fg="white",font="Airtel 20",command=reset_pass)
+l12.place(x=100,y=400)
 l11=Button(text="Analysis",bg="dark blue",fg="white",font="Airtel 20",command=graph_show)
 l11.place(x=650,y=250)
 b2=Button(text="Exit",bg="blue",fg="white",font="Airtel 15",command=root.destroy)
