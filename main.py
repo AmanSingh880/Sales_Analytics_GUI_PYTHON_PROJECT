@@ -26,11 +26,11 @@ class data_entry_class():
         self.Product_sold = None
 
 def graph_show():
-    l12.destroy()
-    l11.destroy()
-    l.destroy()
-    l1.destroy()
-    b2.destroy()
+    l6.destroy()
+    l7.destroy()
+    l8.destroy()
+    l9.destroy()
+    l10.destroy()
     h1=Label(root,text="Sales Analytics",font="Airtel 30",bg="blue", fg="white").pack()
     mycursor.execute("Select date_of_sale,product_sold from boat")
     y=[]
@@ -102,10 +102,10 @@ def passed(a):
     return mycursor.rowcount != 0
 
 def entry():
-    l12.destroy()
-    l11.destroy()
-    l.destroy()
-    l1.destroy()
+    l6.destroy()
+    l7.destroy()
+    l8.destroy()
+    l9.destroy()
     def get_values():
         a=data_entry_class()
         a.Product_ID=Poduct_ID.get()
@@ -168,16 +168,16 @@ def reset_pass():
 root=Tk()
 root.title("Sales analytic")
 root.geometry('1200x750')
-root.config(bg="red")
-l=Label(root,text="Welcome to Sales Analytics",font="Airtel 34",bg="blue", fg="white")
-l.place(x=300,y=100)
-l1=Button(text="Enter Data",bg="dark blue",fg="white",font="Airtel 20",command=entry)
-l1.place(x=100,y=250)
-l12=Button(text="Reset_Password",bg="dark blue",fg="white",font="Airtel 20",command=reset_pass)
-l12.place(x=100,y=400)
-l11=Button(text="Analysis",bg="dark blue",fg="white",font="Airtel 20",command=graph_show)
-l11.place(x=650,y=250)
-b2=Button(text="Exit",bg="blue",fg="white",font="Airtel 15",command=root.destroy)
-b2.place(x=50,y=650)
+root.configure(bg='#51007d')
+l6=Label(root,text="Welcome to Sales Analytics",font="Airtel 34",bg="blue", fg="white")
+l6.place(x=300,y=100)
+l7=Button(text="Enter Data",bg="dark blue",fg="white",font="Airtel 20",command=entry)
+l7.place(x=100,y=250)
+l8=Button(text="Reset_Password",bg="dark blue",fg="white",font="Airtel 20",command=reset_pass)
+l8.place(x=100,y=400)
+l9=Button(text="Analysis",bg="dark blue",fg="white",font="Airtel 20",command=graph_show)
+l9.place(x=650,y=250)
+l10=Button(text="Exit",bg="blue",fg="white",font="Airtel 15",command=root.destroy)
+l10.place(x=50,y=650)
 
 root.mainloop()

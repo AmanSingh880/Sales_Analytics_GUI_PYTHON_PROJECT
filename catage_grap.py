@@ -39,7 +39,7 @@ def on_menu_select(value):
 root=Tk()
 root.title("Sales analytic")
 root.geometry('1200x750')
-root.config(bg="red")
+root.configure(bg='#51007d')
 l=Label(root,text="Sales Analytics",font="Airtel 34",bg="blue", fg="white")
 l.place(x=300,y=100)
 selected_option = StringVar()

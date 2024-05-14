@@ -35,17 +35,21 @@ def show_dates():
 def on_menu_select(value):
     pass
 
-
+def back_sh():
+    root.destroy()
+    os.system("main.py")
 
 root=Tk()
 root.title("Sales analytic")
 root.geometry('1200x750')
-root.config(bg="red")
+root.configure(bg='#51007d')
 l=Label(root,text="Sales Analytics",font="Airtel 34",bg="blue", fg="white")
 l.place(x=300,y=100)
 selected_option = StringVar()
-selected_option.set("Categories")
+selected_option.set("Date")
 options =show_dates();
 dropdown = OptionMenu(root, selected_option, *options,command=on_menu_select)
 dropdown.place(x=100,y=200)
+b2=Button(text="back",bg="blue",fg="white",font="Airtel 15",command=back_sh)
+b2.place(x=50,y=650)
 root.mainloop()
