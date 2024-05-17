@@ -7,7 +7,6 @@ from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, 
 NavigationToolbar2Tk) 
 
-# Database connection
 mydb = mysql.connector.connect(
     host="localhost",
     user="root",
@@ -15,8 +14,6 @@ mydb = mysql.connector.connect(
     database="sales_report"
 )
 mycursor = mydb.cursor()
-
-# Data entry class
 class data_entry_class():
     def __init__(self):
         self.Product_ID = None
@@ -26,8 +23,6 @@ class data_entry_class():
         self.Category = None
         self.MRP = None
         self.Product_sold = None
-
-# Function to show graph
 def graph_show():
     global l6, l7, l8, l9, l10
     l6.destroy()
@@ -85,8 +80,6 @@ def graph_show():
     toolbar.update() 
     canvas.get_tk_widget().pack()
     root.mainloop()
-
-# Function to save data
 def passed(a):
     b = a.Product_ID
     given_date = z.now().date()
@@ -104,8 +97,6 @@ def passed(a):
     mycursor.execute(sql, val)
     mydb.commit()
     return mycursor.rowcount != 0
-
-# Function to handle data entry
 def entry():
     global l6, l7, l8, l9
     l6.destroy()
@@ -168,12 +159,10 @@ def entry():
     b2.place(x=50, y=650)
     root.mainloop()
 
-# Function to reset password
 def reset_pass():
     root.destroy()
     os.system("reset.py")
 
-# Main application
 root = Tk()
 root.title("Sales analytic")
 root.geometry('1200x750')

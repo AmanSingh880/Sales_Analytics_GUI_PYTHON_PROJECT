@@ -33,7 +33,6 @@ def back_sh():
     root.destroy()
     os.system("main.py")
 def on_menu_select(value):
-   # canvas.get_tk_widget().destroy()
     mycursor.execute("Select date_of_sale,product_sold from boat where category='{}'".format(value))
     y=[]
     d=[]
