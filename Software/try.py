@@ -53,17 +53,51 @@ a.Product_sold = 28
 # passed(a)
 
 
+# import sqlite3
+
+# # Database connection
+# mydb = sqlite3.connect('sales_report.db')
+# mycursor = mydb.cursor()
+
+# # Function to read all data
+# def read_all_data():
+#     mycursor.execute("Truncate boat")
+
+# # Main function to execute the read operation
+# if __name__ == "__main__":
+#     read_all_data()
+
 import sqlite3
 
 # Database connection
-mydb = sqlite3.connect('sales_report.db')
+mydb = sqlite3.connect('Sales_pass.db')
 mycursor = mydb.cursor()
 
-# Function to read all data
-def read_all_data():
-    mycursor.execute("Truncate boat")
+# Create table if it doesn't exist
+mycursor.execute('''
+CREATE TABLE IF NOT EXISTS Sales_pass (
+    Password TEXT
+)
+''')
+mydb.commit()
 
-# Main function to execute the read operation
-if __name__ == "__main__":
-    read_all_data()
+def get_latest_password():
+    mycursor.execute("SELECT Password FROM Sales_pass")
+    passwords = mycursor.fetchall()
+    if passwords:
+        return passwords[-1][0]
+    else:
+        # Insert the default password if the table is empty
+        default_password = "Aman@123"
+        mycursor.execute("INSERT INTO Sales_pass (Password) VALUES (?)", (default_password,))
+        mydb.commit()
+        return default_password
+
+def add_password(password):
+    mycursor.execute("INSERT INTO Sales_pass (Password) VALUES (?)", (password,))
+    mydb.commit()
+# Print the latest password
+latest_password = get_latest_password()
+print(f"The latest password is: {latest_password}")
+print(type(latest_password))
 

@@ -2,10 +2,25 @@ from tkinter import *
 import pickle
 import os
 from tkinter import messagebox
-    
+import sqlite3
+
+# Database connection
+mydb = sqlite3.connect('Sales_pass.db')
+mycursor = mydb.cursor()
+
+# Create table if it doesn't exist
+mycursor.execute('''
+CREATE TABLE IF NOT EXISTS Sales_pass (
+    Password TEXT
+)
+''')
+mydb.commit()
 def main_call():
     root.destroy()
     os.system("main.py")
+def add_password(password):
+    mycursor.execute("INSERT INTO Sales_pass (Password) VALUES (?)", (password,))
+    mydb.commit()
 
 def reset_password(password):
     def validate_password_reset(password):
@@ -42,9 +57,7 @@ def reset_password(password):
 
     
     if(validate_password_reset(password)):
-        file=open("binary.bin","wb")
-        pickle.dump(password,file)
-        file.close()
+        add_password(password)
         messagebox.showwarning("Sales Analytic","Password Changed")
         return True
     else:

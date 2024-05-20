@@ -3,6 +3,32 @@ import pickle
 import os
 from tkinter import messagebox
 import webbrowser
+import sqlite3
+
+# Database connection
+mydb = sqlite3.connect('Sales_pass.db')
+mycursor = mydb.cursor()
+
+# Create table if it doesn't exist
+mycursor.execute('''
+CREATE TABLE IF NOT EXISTS Sales_pass (
+    Password TEXT
+)
+''')
+mydb.commit()
+
+def get_latest_password():
+    mycursor.execute("SELECT Password FROM Sales_pass")
+    passwords = mycursor.fetchall()
+    if passwords:
+        return passwords[-1][0]
+    else:
+        # Insert the default password if the table is empty
+        default_password = "Aman@123"
+        mycursor.execute("INSERT INTO Sales_pass (Password) VALUES (?)", (default_password,))
+        mydb.commit()
+        return default_password
+
 
 def main_call():
     os.system("main.py")
@@ -37,12 +63,8 @@ l1.place(x=300, y=100,width=200)
 def Validate_password(password):
     valid = False
     try:
-        with open("binary.bin", "rb") as file:
-            original_password = pickle.load(file)
+            original_password=get_latest_password()
             if original_password == password:
-                valid = True
-                return True
-            if "aman@123" == password:
                 valid = True
                 return True
             else:
