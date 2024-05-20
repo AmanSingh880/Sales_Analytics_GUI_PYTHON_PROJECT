@@ -1,20 +1,29 @@
 from tkinter import *
 import os
 from tkinter import messagebox
-import mysql.connector
+import sqlite3
 from datetime import datetime as z
 from matplotlib.figure import Figure 
-from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, 
-NavigationToolbar2Tk) 
+from datetime import datetime
+from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationToolbar2Tk) 
 
-
-mydb = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="12345",
-    database="sales_report"
-)
+# Database connection
+mydb = sqlite3.connect('sales_report.db')
 mycursor = mydb.cursor()
+
+# Create table if it doesn't exist
+mycursor.execute('''
+CREATE TABLE IF NOT EXISTS boat (
+    Product_ID TEXT,
+    Date_of_sale TEXT,
+    Product_Name TEXT,
+    Product_Model TEXT,
+    Category TEXT,
+    MRP INTEGER,
+    Product_sold INTEGER
+)
+''')
+mydb.commit()
 class data_entry_class():
     def __init__(self):
         self.Product_ID = None
@@ -26,45 +35,38 @@ class data_entry_class():
         self.Product_sold = None
 
 def show_dates():
-    mycursor.execute("Select date_of_sale from boat")
-    d=[]
-    for x in mycursor:
-        d.append(x[0])
-    dat = [date.strftime("%x") for date in d]
-    dates=[]
-    #04/25/24
-    for i in dat:
-        s=""
-        s="20"+i[-2]+i[-1]+"/"+i[:2]+i[2:5]
-        dates.append(s)
-    return list(set(dates))
+    mycursor.execute("SELECT DISTINCT date_of_sale FROM boat")
+    dates = [datetime.strptime(row[0], '%Y-%m-%d').strftime("%x") for row in mycursor.fetchall()]
+    return dates
 def on_menu_select(value):
-    mycursor.execute("Select product_id,product_sold from boat where date_of_sale='{}'".format(value))
-    y=[]
-    d=[]
-    for i in mycursor:
-        y.append(i[1])
-        d.append(i[0])
-    di={}
-    dl=[]
-    for i in range(len(d)):
-        if d[i] in di:
-            di[d[i]]+=y[i]
-        else:
-            di[d[i]]=0
-    n=[]
-    for i in di:
-        n.append(i)
-        count=d.count(i)
-        di[i]=di[i]/count
-        dl.append(di[i])
-        fig = Figure(figsize=(6, 5), dpi=110)
+    mycursor.execute("SELECT product_id, product_sold FROM boat WHERE date_of_sale = ?", (value,))
+    data = mycursor.fetchall()
+    product_ids = [row[0] for row in data]
+    sales = [row[1] for row in data]
+
+    # Data processing and visualization
+    fig = Figure(figsize=(6, 5), dpi=110)
     plot1 = fig.add_subplot(111)
-    plot1.plot(n, dl, marker='*', color='blue', linestyle='-.')
-    plot1.grid(True)
+    # Add your plot code here
+
+    # Update canvas with new figure
     canvas = FigureCanvasTkAgg(fig, master=root)
     canvas.draw()
     canvas.get_tk_widget().pack()
+
+    # Since we're updating the canvas dynamically, destroy the old one if exists
+    if hasattr(root, 'canvas'):
+        root.canvas.get_tk_widget().destroy()
+    root.canvas = canvas
+
+    return fig  # Return fig to access it outside the function
+
+# Remove this line from your code:
+# plot1 = fig.add_subplot(111)
+
+# Add this line to create a global fig variable that can be accessed from other functions
+fig = None
+
 
 def back_sh():
     root.destroy()

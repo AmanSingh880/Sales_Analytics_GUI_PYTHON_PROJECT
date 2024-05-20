@@ -51,3 +51,19 @@ a.MRP = 1500
 a.Product_sold = 28
 
 # passed(a)
+
+
+import sqlite3
+
+# Database connection
+mydb = sqlite3.connect('sales_report.db')
+mycursor = mydb.cursor()
+
+# Function to read all data
+def read_all_data():
+    mycursor.execute("Truncate boat")
+
+# Main function to execute the read operation
+if __name__ == "__main__":
+    read_all_data()
+

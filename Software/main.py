@@ -1,23 +1,31 @@
 from tkinter import *
 import os
 from tkinter import messagebox
-import mysql.connector
+import sqlite3
 from datetime import datetime as z
 from matplotlib.figure import Figure 
-from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, 
-NavigationToolbar2Tk) 
+from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationToolbar2Tk)
 
 # Database connection
-mydb = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="12345",
-    database="sales_report"
-)
+mydb = sqlite3.connect('sales_report.db')
 mycursor = mydb.cursor()
 
+# Create table if it doesn't exist
+mycursor.execute('''
+CREATE TABLE IF NOT EXISTS boat (
+    Product_ID TEXT,
+    Date_of_sale TEXT,
+    Product_Name TEXT,
+    Product_Model TEXT,
+    Category TEXT,
+    MRP INTEGER,
+    Product_sold INTEGER
+)
+''')
+mydb.commit()
+
 # Data entry class
-class data_entry_class():
+class data_entry_class:
     def __init__(self):
         self.Product_ID = None
         self.Date = None
@@ -35,15 +43,16 @@ def graph_show():
     l8.destroy()
     l9.destroy()
     l10.destroy()
-    h1=Label(root,text="Sales Analytics",font="Airtel 30",bg="blue", fg="white").pack()
-    mycursor.execute("SELECT date_of_sale, product_sold FROM boat")
-    y=[]
-    d=[]
+    h1 = Label(root, text="Sales Analytics", font="Airtel 30", bg="blue", fg="white").pack()
+    mycursor.execute("SELECT Date_of_sale, Product_sold FROM boat")
+    y = []
+    d = []
     for i in mycursor:
         y.append(i[1])
         d.append(i[0])
+    
     import datetime
-    date_list = d
+    date_list = [datetime.datetime.strptime(date, '%Y-%m-%d') for date in d]
     x = [date.day for date in date_list]
     di = {}
     dl = []
@@ -66,6 +75,7 @@ def graph_show():
     canvas = FigureCanvasTkAgg(fig, master=root)
     canvas.draw()
     canvas.get_tk_widget().pack()
+    
     def back_graph():
         root.destroy()
         os.system("main.py")
@@ -75,14 +85,15 @@ def graph_show():
     def date_gra():
         root.destroy()
         os.system("date_grap.py")
-    bu=Button(text="Categry Wise",bg="dark blue",fg="white",font="Airtel 14",command=catage_gra)
+    
+    bu = Button(text="Category Wise", bg="dark blue", fg="white", font="Airtel 14", command=catage_gra)
     bu.pack()
-    bu=Button(text="Today Data",bg="dark blue",fg="white",font="Airtel 14",command=date_gra)
+    bu = Button(text="Today Data", bg="dark blue", fg="white", font="Airtel 14", command=date_gra)
     bu.pack()
-    bu=Button(text="back",bg="dark blue",fg="white",font="Airtel 14",command=back_graph)
+    bu = Button(text="back", bg="dark blue", fg="white", font="Airtel 14", command=back_graph)
     bu.pack()
-    toolbar = NavigationToolbar2Tk(canvas, root) 
-    toolbar.update() 
+    toolbar = NavigationToolbar2Tk(canvas, root)
+    toolbar.update()
     canvas.get_tk_widget().pack()
     root.mainloop()
 
@@ -93,13 +104,13 @@ def passed(a):
     year = given_date.year
     month = given_date.month
     day = given_date.day
-    c = str(year) + "/" + str(month) + "/" + str(day)
+    c = str(year) + "-" + str(month) + "-" + str(day)
     d = a.Product_Name
     e = a.Product_Model
     f = a.Category
     g = int(a.MRP)
     h = int(a.Product_sold)
-    sql = "INSERT INTO boat (Product_ID, Date_of_sale, Product_Name, Product_Model, Category, MRP, Product_sold) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+    sql = "INSERT INTO boat (Product_ID, Date_of_sale, Product_Name, Product_Model, Category, MRP, Product_sold) VALUES (?, ?, ?, ?, ?, ?, ?)"
     val = (b, c, d, e, f, g, h)
     mycursor.execute(sql, val)
     mydb.commit()
@@ -121,7 +132,7 @@ def entry():
         a.MRP = mp.get()
         a.Product_sold = poduct_sold.get()
         c = passed(a)
-        if c == True:
+        if c:
             messagebox.showwarning("Sales Analytic", "Data Saved")
         else:
             messagebox.showwarning("Sales Analytic", "Failed \n Try again")
@@ -132,17 +143,17 @@ def entry():
 
     l2 = Label(root, text="Sales Analytics Entry Data", font="Airtel 34", bg="blue", fg="white")
     l2.place(x=300, y=50)
-    l3 = Label(root, text="Product ID : ",bg='#51007d', font="Airtel 14" , fg="white")
+    l3 = Label(root, text="Product ID : ", bg='#51007d', font="Airtel 14", fg="white")
     l3.place(x=100, y=150)
-    l4 = Label(root, text="Product Name :",bg='#51007d', font="Airtel 14" , fg="white")
+    l4 = Label(root, text="Product Name :", bg='#51007d', font="Airtel 14", fg="white")
     l4.place(x=100, y=200)
-    l5 = Label(root, text="Product Model :",bg='#51007d', font="Airtel 14" , fg="white")
+    l5 = Label(root, text="Product Model :", bg='#51007d', font="Airtel 14", fg="white")
     l5.place(x=100, y=250)
-    l6 = Label(root, text="Category :",bg='#51007d', font="Airtel 14" , fg="white")
+    l6 = Label(root, text="Category :", bg='#51007d', font="Airtel 14", fg="white")
     l6.place(x=100, y=300)
-    l7 = Label(root, text="MRP :",bg='#51007d', font="Airtel 14" , fg="white")
+    l7 = Label(root, text="MRP :", bg='#51007d', font="Airtel 14", fg="white")
     l7.place(x=100, y=350)
-    l8 = Label(root, text="Product sold :",bg='#51007d', font="Airtel 14", fg="white")
+    l8 = Label(root, text="Product sold :", bg='#51007d', font="Airtel 14", fg="white")
     l8.place(x=100, y=400)
     Poduct_ID = StringVar()
     Poduct_Name = StringVar()
