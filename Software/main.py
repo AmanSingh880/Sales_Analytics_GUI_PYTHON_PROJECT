@@ -7,6 +7,7 @@ from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, 
 NavigationToolbar2Tk) 
 
+# Database connection
 mydb = mysql.connector.connect(
     host="localhost",
     user="root",
@@ -14,6 +15,8 @@ mydb = mysql.connector.connect(
     database="sales_report"
 )
 mycursor = mydb.cursor()
+
+# Data entry class
 class data_entry_class():
     def __init__(self):
         self.Product_ID = None
@@ -23,6 +26,8 @@ class data_entry_class():
         self.Category = None
         self.MRP = None
         self.Product_sold = None
+
+# Function to show graph
 def graph_show():
     global l6, l7, l8, l9, l10
     l6.destroy()
@@ -80,6 +85,8 @@ def graph_show():
     toolbar.update() 
     canvas.get_tk_widget().pack()
     root.mainloop()
+
+# Function to save data
 def passed(a):
     b = a.Product_ID
     given_date = z.now().date()
@@ -97,6 +104,8 @@ def passed(a):
     mycursor.execute(sql, val)
     mydb.commit()
     return mycursor.rowcount != 0
+
+# Function to handle data entry
 def entry():
     global l6, l7, l8, l9
     l6.destroy()
@@ -123,17 +132,17 @@ def entry():
 
     l2 = Label(root, text="Sales Analytics Entry Data", font="Airtel 34", bg="blue", fg="white")
     l2.place(x=300, y=50)
-    l3 = Label(root, text="Product ID : ", font="Airtel 14", bg="red", fg="white")
+    l3 = Label(root, text="Product ID : ",bg='#51007d', font="Airtel 14" , fg="white")
     l3.place(x=100, y=150)
-    l4 = Label(root, text="Product Name :", font="Airtel 14", bg="red", fg="white")
+    l4 = Label(root, text="Product Name :",bg='#51007d', font="Airtel 14" , fg="white")
     l4.place(x=100, y=200)
-    l5 = Label(root, text="Product Model :", font="Airtel 14", bg="red", fg="white")
+    l5 = Label(root, text="Product Model :",bg='#51007d', font="Airtel 14" , fg="white")
     l5.place(x=100, y=250)
-    l6 = Label(root, text="Category :", font="Airtel 14", bg="red", fg="white")
+    l6 = Label(root, text="Category :",bg='#51007d', font="Airtel 14" , fg="white")
     l6.place(x=100, y=300)
-    l7 = Label(root, text="MRP :", font="Airtel 14", bg="red", fg="white")
+    l7 = Label(root, text="MRP :",bg='#51007d', font="Airtel 14" , fg="white")
     l7.place(x=100, y=350)
-    l8 = Label(root, text="Product sold :", font="Airtel 14", bg="red", fg="white")
+    l8 = Label(root, text="Product sold :",bg='#51007d', font="Airtel 14", fg="white")
     l8.place(x=100, y=400)
     Poduct_ID = StringVar()
     Poduct_Name = StringVar()
@@ -159,10 +168,12 @@ def entry():
     b2.place(x=50, y=650)
     root.mainloop()
 
+# Function to reset password
 def reset_pass():
     root.destroy()
     os.system("reset.py")
 
+# Main application
 root = Tk()
 root.title("Sales analytic")
 root.geometry('1200x750')

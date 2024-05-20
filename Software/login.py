@@ -27,6 +27,18 @@ def create_gradient(canvas, color1, color2):
         color = f'#{r:02x}{g:02x}{b:02x}'
         canvas.create_line(0, i, 1200, i, fill=color)
 create_gradient(canvas, "#2e2e2e", "#1c1c1c")
+
+# Gradient background function
+def create_gradient(canvas, color1, color2):
+    for i in range(800):
+        r, g, b = (
+            int(color1[1:3], 16) * (800 - i) // 800 + int(color2[1:3], 16) * i // 800,
+            int(color1[3:5], 16) * (800 - i) // 800 + int(color2[3:5], 16) * i // 800,
+            int(color1[5:7], 16) * (800 - i) // 800 + int(color2[5:7], 16) * i // 800,
+        )
+        color = f'#{r:02x}{g:02x}{b:02x}'
+        canvas.create_line(0, i, 1200, i, fill=color)
+create_gradient(canvas, "#2e2e2e", "#1c1c1c")
 l1 = Label(root, text=" Login ", font=("Helvetica", 40, "bold"), bg='#1c1c1c', fg="#f1c40f")
 l1.place(x=300, y=100,width=200)
 
