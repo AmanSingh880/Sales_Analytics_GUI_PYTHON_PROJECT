@@ -39,9 +39,10 @@ def show_categories():
 
 def back_sh():
     root.destroy()
-    os.system("main.py")
+    os.system("python main.py")
 
 def on_menu_select(value):
+    print("yes")
     mycursor.execute("SELECT Date_of_sale, Product_sold FROM boat WHERE Category = ?", (value,))
     rows = mycursor.fetchall()
 
@@ -51,7 +52,7 @@ def on_menu_select(value):
     # Data processing and visualization
     fig = Figure(figsize=(6, 5), dpi=110)
     plot1 = fig.add_subplot(111)
-    plot1.plot(dates, sales, marker='*', color='blue', linestyle='-.')
+    plot1.plot(dates, sales, marker='*', color='blue', linestyle='-')
     plot1.grid(True)
 
     canvas = FigureCanvasTkAgg(fig, master=root)
@@ -62,16 +63,16 @@ root=Tk()
 root.title("Sales analytic")
 root.geometry('1200x750')
 root.configure(bg='#51007d')
-l=Label(root,text="Sales Analytics",font="Airtel 34",bg="blue", fg="white")
+l=Label(root,text="Sales Analytics",font=("Arial", 34),bg="blue", fg="white")
 l.pack()
 
 selected_option = StringVar()
 selected_option.set("Categories")
 options = show_categories()
-dropdown = OptionMenu(root, selected_option, *options, command=on_menu_select)
+dropdown = OptionMenu(root, selected_option, *options, command=on_menu_select(selected_option.get()))
 dropdown.place(x=100,y=200)
 
-b2=Button(text="back",bg="blue",fg="white",font="Airtel 15",command=back_sh)
+b2=Button(text="back",bg="blue",fg="white",font=("Arial", 15),command=back_sh)
 b2.place(x=50,y=650)
 
 root.mainloop()

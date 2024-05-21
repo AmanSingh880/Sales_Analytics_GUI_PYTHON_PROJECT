@@ -1,0 +1,5 @@
+```txt
+matplotlib
+mysql-connector-python
+tk
+```
