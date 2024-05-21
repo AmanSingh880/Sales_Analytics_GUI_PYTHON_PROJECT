@@ -34,7 +34,7 @@ def main_call():
     os.system("main.py")
 
 def browse():
-    webbrowser.open("https://amansingh880.github.io/4th-sem-project/index.html")
+    webbrowser.open("https://amansingh880.github.io/Sales_Analytics_GUI_PYTHON_PROJECT")
 
 root = Tk()
 root.title("Sales Analytics")
