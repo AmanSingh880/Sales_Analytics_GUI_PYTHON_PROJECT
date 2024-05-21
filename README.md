@@ -34,7 +34,7 @@ pip install -r requirements.txt
 4. **Run the Application**: Execute the main Python script to launch the application.
 
 ```bash
-python main.py
+python home.py
 ```
 
 5. **Usage**: Follow the on-screen instructions to enter new sales data, view analytics, and generate reports.
