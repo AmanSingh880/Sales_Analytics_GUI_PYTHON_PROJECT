@@ -53,51 +53,89 @@ a.Product_sold = 28
 # passed(a)
 
 
-# import sqlite3
-
-# # Database connection
-# mydb = sqlite3.connect('sales_report.db')
-# mycursor = mydb.cursor()
-
-# # Function to read all data
-# def read_all_data():
-#     mycursor.execute("Truncate boat")
-
-# # Main function to execute the read operation
-# if __name__ == "__main__":
-#     read_all_data()
-
 import sqlite3
 
 # Database connection
-mydb = sqlite3.connect('Sales_pass.db')
+mydb = sqlite3.connect('sales_report.db')
 mycursor = mydb.cursor()
 
+# Function to read all data
+def read_all_data():
+    mycursor.execute("select *from boat")
+    a=mycursor.fetchall()
+    for i in a:
+        print(i)
+
+# Main function to execute the read operation
+if __name__ == "__main__":
+    read_all_data()
+
+# import sqlite3
+
+# # Database connection
+# mydb = sqlite3.connect('Sales_pass.db')
+# mycursor = mydb.cursor()
+
 # Create table if it doesn't exist
-mycursor.execute('''
-CREATE TABLE IF NOT EXISTS Sales_pass (
-    Password TEXT
-)
-''')
-mydb.commit()
+# mycursor.execute('''
+# CREATE TABLE IF NOT EXISTS Sales_pass (
+#     Password TEXT
+# )
+# ''')
+# mydb.commit()
 
-def get_latest_password():
-    mycursor.execute("SELECT Password FROM Sales_pass")
-    passwords = mycursor.fetchall()
-    if passwords:
-        return passwords[-1][0]
-    else:
-        # Insert the default password if the table is empty
-        default_password = "Aman@123"
-        mycursor.execute("INSERT INTO Sales_pass (Password) VALUES (?)", (default_password,))
-        mydb.commit()
-        return default_password
+# def get_latest_password():
+#     mycursor.execute("SELECT Password FROM Sales_pass")
+#     passwords = mycursor.fetchall()
+#     if passwords:
+#         return passwords[-1][0]
+#     else:
+#         # Insert the default password if the table is empty
+#         default_password = "Aman@123"
+#         mycursor.execute("INSERT INTO Sales_pass (Password) VALUES (?)", (default_password,))
+#         mydb.commit()
+#         return default_password
 
-def add_password(password):
-    mycursor.execute("INSERT INTO Sales_pass (Password) VALUES (?)", (password,))
-    mydb.commit()
-# Print the latest password
-latest_password = get_latest_password()
-print(f"The latest password is: {latest_password}")
-print(type(latest_password))
+# def add_password(password):
+#     mycursor.execute("INSERT INTO Sales_pass (Password) VALUES (?)", (password,))
+#     mydb.commit()
+# # Print the latest password
+# latest_password = get_latest_password()
+# print(f"The latest password is: {latest_password}")
+# print(type(latest_password))
+import sqlite3
+
+# def insert_row(product_id, date_of_sale, product_name, product_model, category, mrp, product_sold):
+#     try:
+#         # Connect to the SQLite database
+#         mydb = sqlite3.connect('sales_report.db')
+#         mycursor = mydb.cursor()
+
+#         # SQL query to insert a row into the "boat" table
+#         sql = '''INSERT INTO boat (Product_ID, Date_of_sale, Product_Name, Product_Model, Category, MRP, Product_sold)
+#                  VALUES (?, ?, ?, ?, ?, ?, ?)'''
+
+#         # Data to be inserted into the table
+#         data = (product_id, date_of_sale, product_name, product_model, category, mrp, product_sold)
+
+#         # Execute the SQL query
+#         mycursor.execute(sql, data)
+
+#         # Commit the changes to the database
+#         mydb.commit()
+
+#         # Close the database connection
+#         mydb.close()
+
+#         print("Row inserted successfully.")
+#     except sqlite3.Error as e:
+#         print("Error inserting row:", e)
+
+# # Example usage:
+# insert_row("1001", "2024-05-19", "Rokerz", "255", "Neckband", 1500, 18)
+# insert_row("1002", "2024-05-19", "Rokerz", "255+", "Neckband", 1100, 19)
+# insert_row("1003", "2024-05-19", "Rokerz", "255 pro", "Neckband", 1800, 20)
+# insert_row("1004", "2024-05-19", "AirBuds", "155", "AirBuds", 2100, 10)
+# insert_row("1005", "2024-05-19", "AirBuds", "155", "AirBuds", 2200, 21)
+
 
