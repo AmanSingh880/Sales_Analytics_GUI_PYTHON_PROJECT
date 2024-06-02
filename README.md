@@ -20,21 +20,14 @@ The Sales Report Management System is a Python application that helps manage sal
 1. **Installation**: Clone the repository to your local machine.
 
 ```bash
-git clone https://github.com/your_username/sales-report-management.git
+git clone https://github.com/amansingh8808/sales-report-management.git
 ```
 
-2. **Dependencies**: Install the required dependencies using pip.
+
+2. **Run the Application**: Execute the main Python script to launch the application.
 
 ```bash
-pip install -r requirements.txt
-```
-
-3. **Database Setup**: Ensure you have SQLite installed. The application uses a local SQLite database named `sales_report.db` for storing sales data. If you want to use a different database, update the connection details accordingly.
-
-4. **Run the Application**: Execute the main Python script to launch the application.
-
-```bash
-python home.py
+double click on main.exe
 ```
 
 5. **Usage**: Follow the on-screen instructions to enter new sales data, view analytics, and generate reports.
