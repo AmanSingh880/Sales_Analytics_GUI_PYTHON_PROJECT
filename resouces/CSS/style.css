@@ -1,11 +1,15 @@
 * {
     margin: 0;
     padding: 0;
+
 }
 
 body {
+    /* background-color: black; */
+    background-color: rgb(32, 38, 45);
+    color: rgb(254, 254, 255);
     font-family: system-ui;
-    background: #eee;
+    /* background: #eee; */
     text-align: center;
 }
 
