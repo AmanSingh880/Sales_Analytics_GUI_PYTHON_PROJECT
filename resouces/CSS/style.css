@@ -6,7 +6,7 @@
 
 body {
     /* background-color: black; */
-    background-color: rgb(32, 38, 45);
+    background-color: rgb(7, 31, 58);
     color: rgb(254, 254, 255);
     font-family: system-ui;
     /* background: #eee; */
@@ -87,7 +87,7 @@ body {
 .price {
     width: 75px;
     height: 70px;
-    background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);
+    background-image: linear-gradient(315deg, #05050c 0%, #151718 74%);
     color: #fff;
     font-weight: 600;
     border-radius: 30%;
@@ -122,7 +122,7 @@ body {
     height: 250px;
     border-radius: 10px;
     cursor: pointer;
-    background-color: rgba(57, 192, 237, 0.2);
+    background-color: rgba(22, 42, 49, 0.2);
     transition: transform 1s;
 }
 
@@ -163,7 +163,7 @@ body {
     display: block;
     position: absolute;
     font-size: 100px;
-    color: #6495ed;
+    color: #05070a;
     font-family: sans-serif;
     left: 44%;
     top: -20px;
@@ -172,7 +172,7 @@ body {
 .site-footer {
     margin-top: 50px;
     position: relative;
-    background-color: #2a2a72;
+    background-color: #0a0a12;
     background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);
     width: 100%;	
     bottom: 0; 
