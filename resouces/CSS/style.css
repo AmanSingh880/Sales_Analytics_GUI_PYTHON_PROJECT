@@ -262,6 +262,20 @@ body {
     padding: 12px;
     border-radius: 50%;
 }
+.site-footer .container a{
+    color: black;
+    justify-content: left;
+    align-items: left;
+}
+.carousel-inner {
+    height: 500px; /* Set your desired fixed height here */
+}
+
+.carousel-inner img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover; /* Ensures images cover the entire carousel area */
+}
 
 /* Responsive Design */
 
