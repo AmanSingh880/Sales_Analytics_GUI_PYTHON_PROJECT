@@ -6,32 +6,42 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sales Analysis</title>
+
+    <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
         integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
-    <link rel="stylesheet" href="resouces/CSS/style.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./resouces/CSS/style.css">
+
 </head>
 
 <body>
-    <nav class="navbar navbar-default navbar-fixed-top" style="background-color: #13131a;background-image: linear-gradient(315deg, #141423 0%, #0d1114 74%); padding-top:15px;padding-bottom:15px;">
+    <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
-            <div class="navbar-header" style="height:50px; width:auto;">
-                <a class="navbar-brand" href="#"></a>
-                <img src="resouces/image/logo.jpg" height="50px" width="auto" style="border-radius: 50%;">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">
+                    <img src="resouces/image/logo.jpg" height="50px" width="auto">
+                </a>
             </div>
             <div class="collapse navbar-collapse navbar-right" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="index.html" style="color:white; font-family: 'Quicksand', sans-serif;font-size: 18px; font-weight: 250; padding: 15px 15px 15px 15px;"><b>About Us</b></a></li>
-                    <li><a href="resouces/component/sales-analysis.html" style="color:white; font-family: 'Quicksand', sans-serif;font-size: 18px; font-weight: 250; padding: 15px 15px 15px 15px;"><b>Demo Section </b></a></li>
-                    <li><a href="resouces/component/contact.html" style="color:white; font-family: 'Quicksand', sans-serif;font-size: 18px; font-weight: 250; padding: 15px 15px 15px 15px;"><b>Contact us  </b></a></li>
-                    <li><a href="resouces/component/sales-analysis.html" style="color:white; font-family: 'Quicksand', sans-serif;font-size: 18px; font-weight: 250; padding: 15px 15px 15px 15px;"><b>Software</b></a></li>
+                    <li><a href="resouces/component/about.html"><b>About Us</b></a></li>
+                    <li><a href="resouces/component/contact.html"><b>Contact us</b></a></li>
                 </ul>
             </div>
         </div>
     </nav>
-    
-    <!-- <div class="jumbotron" style="background-image: url('resouces/image/jumbotron.jpg');"></div> -->
-    
-    <div id="carouselExample" class="carousel slide" data-ride="carousel" align="center" >
+
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="container">
+            <h1>Welcome to Sales Analysis</h1>
+            <p>Unlock the power of data-driven insights to optimize your sales strategy.</p>
+        </div>
+    </div>
+
+    <div id="carouselExample" class="carousel slide" data-ride="carousel" align="center">
         <ol class="carousel-indicators">
             <li data-target="#carouselExample" data-slide-to="0" class="active"></li>
             <li data-target="#carouselExample" data-slide-to="1"></li>
@@ -39,20 +49,16 @@
         </ol>
         <div class="carousel-inner">
             <div class="item active">
-                <img src="./resouces/image/Friends.jpeg" alt="First slide">
+                <img src="./resouces/image/logo.jpg" alt="First slide">
             </div>
             <div class="item">
-                <img src="./resouces/image/logo.jpg" alt="Second slide">
+                <video alt="Second Slide " controls autoplay loop height="540px">
+                    <source src="./resouces/image/mainvid.mp4" type="video/mp4">
+                </video>
             </div>
             <div class="item">
-                <img src="./resouces/image/logo.jpg" alt="Third slide">
+                <img src="./resouces/image/data1.jpg" alt="Third slide">
             </div>
-            <!-- <div class="item">
-                <img src="./resouces/image/logo.jpg" alt="Third slide">
-            </div>
-            <div class="item">
-                <img src="./resouces/image/logo.jpg" alt="Third slide">
-            </div> -->
         </div>
         <a class="left carousel-control" href="#carouselExample" role="button" data-slide="prev">
             <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -63,49 +69,68 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
-    
-    <div class="container" >
-        <h1>Sales Analysis</h1>
-        <p>Here you can find an analysis of our sales data.The Sales Analysis project visualizes sales data, providing insights into total sales, top-selling products, sales by category, and monthly sales trends. This helps businesses identify patterns and make informed decisions to optimize their sales strategies.</p>
-        <div class="row">
-            <div class="col-md-6">
-                <h3>Total Sales:</h3>
-                <p>Include total sales amount here</p>
-            </div>
-            <div class="col-md-6">
-                <h3>Top Selling Products:</h3>
-                <p>List top selling products here</p>
-            </div>
+
+    <!-- Content Section -->
+    <div class="container content-section">
+        <h2>About Our Software</h2>
+        <p>Our Sales Analysis software provides comprehensive insights into your sales data. It features a user-friendly interface that helps you track and analyze your sales performance, identify trends, and make data-driven decisions. Key features include:</p>
+        <ul>
+            <li>Interactive dashboards with real-time updates</li>
+            <li>Detailed reports on sales metrics and KPIs</li>
+            <li>Customizable charts and graphs</li>
+            <li>Integration with various data sources</li>
+        </ul>
+        <p>Whether you're a small business owner or part of a large enterprise, our software is designed to help you achieve your sales goals and drive growth.</p>
+    </div>
+
+    <!-- Video Section -->
+    <div class="container video-section">
+        <div class="video-container">
+            <video controls>
+                <source src="/resouces/component/Demo.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
         </div>
-        <div class="row">
-            <div class="col-md-6">
-                <h3>Sales by Category:</h3>
-                <p>Show sales data by category here</p>
-            </div>
-            <div class="col-md-6">
-                <h3>Monthly Sales Trend:</h3>
-                <p>Show monthly sales trend here</p>
-            </div>
+        <div class="info-container">
+            <h3>How to Use the Software</h3>
+            <p>Watch this demo video to understand how to navigate through the features of our Sales Analysis software. Learn how to generate reports, interpret data, and customize your dashboards to get the most out of your sales data analysis.</p>
         </div>
     </div>
-    
-    <footer class="site-footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <p style="text-align: center;">Copyright © 2024 Sales Analysis | All rights reserved</p>
-                    <a href="Contact.html">Contact us </a><br>
-                    <a href="About.hmtl">About us</a><br>
-                    <a href="Main.html">Main</a><br>
-                </div>
-            </div>
+
+    <!-- Compact Footer -->
+    <footer class="footer">
+        <div class="container text-center">
+            <p style="margin: 0;">© 2024 Sales Analysis | All Rights Reserved</p>
+            <p style="margin: 0;">Email: contact@salesanalysis.com</p>
         </div>
     </footer>
-    
+
+    <!-- JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
         integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
         crossorigin="anonymous"></script>
+
+    <!-- Custom JS for Animations -->
+    <script>
+        $(document).ready(function() {
+            // Fade-in effect on page load
+            $('body').hide().fadeIn(1500);
+
+            // Smooth scroll to sections
+            $('a').click(function(event) {
+                if (this.hash !== "") {
+                    event.preventDefault();
+                    var hash = this.hash;
+                    $('html, body').animate({
+                        scrollTop: $(hash).offset().top
+                    }, 800, function() {
+                        window.location.hash = hash;
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
